@@ -1,0 +1,17 @@
+{
+
+  "firstName": "Jose",
+  "lastName": "Annunziato",
+  "handle": "jannunzi",
+  "profilePicture": "../../../media/user-icon-elonmusk.jpeg",
+  "bannerPicture": "../../../media/starship.jpeg",
+  "bio": "Faculty, Software Engineer, AI, Space, and renewable enthusiast. Retweets and likes are not endorsements.",
+  "website": "http://www.youtube.com/webdevtv",
+  "location": "Boston, MA",
+  "dateOfBirth": "7/7/1968",
+  "dateJoined": "4/2009",
+  "followingCount": 312,
+  "followersCount": 180,
+  "tweetCount": 5196
+
+}
