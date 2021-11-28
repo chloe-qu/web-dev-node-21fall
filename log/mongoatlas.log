@@ -1,0 +1,372 @@
+Last login: Fri Nov 26 22:35:23 on ttys004
+(base) candy@Mjins-MacBook-Pro ~ % mongosh "mongodb+srv://cluster0.aworb.mongodb.net/myFirstDatabase" --username qgy826
+Enter password: ******
+Current Mongosh Log ID:	61a340f681d24adc0a9fbb76
+Connecting to:		mongodb+srv://cluster0.aworb.mongodb.net/myFirstDatabase
+Using MongoDB:		4.4.10
+Using Mongosh:		1.1.4
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+Atlas atlas-t1njii-shard-0 [primary] test> show dbs
+admin   348 kB
+local  3.75 GB
+Atlas atlas-t1njii-shard-0 [primary] test> show collections
+
+Atlas atlas-t1njii-shard-0 [primary] test> use webdev
+switched to db webdev
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.insert({title: 'Aliens', rating: 4.5});
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a3429f81d24adc0a9fbb77") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> show dbs
+webdev  8.19 kB
+admin    348 kB
+local   3.75 GB
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.find()
+[
+  {
+    _id: ObjectId("61a3429f81d24adc0a9fbb77"),
+    title: 'Aliens',
+    rating: 4.5
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.insert({title: 'Terminator', rating: 4.8});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a342cf81d24adc0a9fbb78") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.insert({title: 'Avatar', rating: 4.7});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a342dd81d24adc0a9fbb79") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.insert({title: 'Dune', rating: 4.9});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a342f181d24adc0a9fbb7a") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.find();
+[
+  {
+    _id: ObjectId("61a3429f81d24adc0a9fbb77"),
+    title: 'Aliens',
+    rating: 4.5
+  },
+  {
+    _id: ObjectId("61a342cf81d24adc0a9fbb78"),
+    title: 'Terminator',
+    rating: 4.8
+  },
+  {
+    _id: ObjectId("61a342dd81d24adc0a9fbb79"),
+    title: 'Avatar',
+    rating: 4.7
+  },
+  {
+    _id: ObjectId("61a342f181d24adc0a9fbb7a"),
+    title: 'Dune',
+    rating: 4.9
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.find({ _id: ObjectId("61a3429f81d24adc0a9fbb77")});
+[
+  {
+    _id: ObjectId("61a3429f81d24adc0a9fbb77"),
+    title: 'Aliens',
+    rating: 4.5
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.find({  title: 'Aliens'});
+[
+  {
+    _id: ObjectId("61a3429f81d24adc0a9fbb77"),
+    title: 'Aliens',
+    rating: 4.5
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.find().pretty()
+[
+  {
+    _id: ObjectId("61a3429f81d24adc0a9fbb77"),
+    title: 'Aliens',
+    rating: 4.5
+  },
+  {
+    _id: ObjectId("61a342cf81d24adc0a9fbb78"),
+    title: 'Terminator',
+    rating: 4.8
+  },
+  {
+    _id: ObjectId("61a342dd81d24adc0a9fbb79"),
+    title: 'Avatar',
+    rating: 4.7
+  },
+  {
+    _id: ObjectId("61a342f181d24adc0a9fbb7a"),
+    title: 'Dune',
+    rating: 4.9
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.updateOne({  title: 'Aliens'}, {$set: {rating:4.9}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.find().pretty()
+[
+  {
+    _id: ObjectId("61a3429f81d24adc0a9fbb77"),
+    title: 'Aliens',
+    rating: 4.9
+  },
+  {
+    _id: ObjectId("61a342cf81d24adc0a9fbb78"),
+    title: 'Terminator',
+    rating: 4.8
+  },
+  {
+    _id: ObjectId("61a342dd81d24adc0a9fbb79"),
+    title: 'Avatar',
+    rating: 4.7
+  },
+  {
+    _id: ObjectId("61a342f181d24adc0a9fbb7a"),
+    title: 'Dune',
+    rating: 4.9
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.updateOne({_id: ObjectId("61a3429f81d24adc0a9fbb77")}, {$set: {rating:4.5}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.find().pretty()
+[
+  {
+    _id: ObjectId("61a3429f81d24adc0a9fbb77"),
+    title: 'Aliens',
+    rating: 4.5
+  },
+  {
+    _id: ObjectId("61a342cf81d24adc0a9fbb78"),
+    title: 'Terminator',
+    rating: 4.8
+  },
+  {
+    _id: ObjectId("61a342dd81d24adc0a9fbb79"),
+    title: 'Avatar',
+    rating: 4.7
+  },
+  {
+    _id: ObjectId("61a342f181d24adc0a9fbb7a"),
+    title: 'Dune',
+    rating: 4.9
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.deleteOne({_id: ObjectId("61a3429f81d24adc0a9fbb77")});
+{ acknowledged: true, deletedCount: 1 }
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.movies.find()
+[
+  {
+    _id: ObjectId("61a342cf81d24adc0a9fbb78"),
+    title: 'Terminator',
+    rating: 4.8
+  },
+  {
+    _id: ObjectId("61a342dd81d24adc0a9fbb79"),
+    title: 'Avatar',
+    rating: 4.7
+  },
+  {
+    _id: ObjectId("61a342f181d24adc0a9fbb7a"),
+    title: 'Dune',
+    rating: 4.9
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> show dbs
+myFirstDatabase    41 kB
+webdev           73.7 kB
+admin             348 kB
+local            3.75 GB
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.tweets.insert({ "user_icon": "../../../media/user-icon-elonmusk.jpeg", "userName": "Elon Musk", "handle": "@elonmusk", "time": "23h","verified": true, "tweet": "Amazing show about <a href=\"#\">@Inspiration4X</a> mission!", "link_image": "../../../media/home-post-elon.jpeg", "link_title": "Countdown: Inspiration4 Mission to Space | Netflix Official Site", "link_summary": "From training to launch to landing, this all-access docuseries rides along with the Inspiration4 crew on the first all-civilian orbital space...", "stats": {"comments": 123, "retweets": 234, "likes": 345}});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a3455a81d24adc0a9fbb7b") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.tweets.find().pretty()
+[
+  {
+    _id: ObjectId("61a3455a81d24adc0a9fbb7b"),
+    user_icon: '../../../media/user-icon-elonmusk.jpeg',
+    userName: 'Elon Musk',
+    handle: '@elonmusk',
+    time: '23h',
+    verified: true,
+    tweet: 'Amazing show about <a href="#">@Inspiration4X</a> mission!',
+    link_image: '../../../media/home-post-elon.jpeg',
+    link_title: 'Countdown: Inspiration4 Mission to Space | Netflix Official Site',
+    link_summary: 'From training to launch to landing, this all-access docuseries rides along with the Inspiration4 crew on the first all-civilian orbital space...',
+    stats: { comments: 123, retweets: 234, likes: 345 }
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.tweets.insert({ "user_icon": "../../../media/user-icon-newyorkpost.jpeg", "userName": "New York Post", "handle": "@nypost", "time": "23h", "verified": false, "tweet": "Grimes seen reading Karl Marx following split with world's richest man Elon Musk <a href=\"#\">trib.al/nx2Gfaq</a>", "link_image": "../../../media/home-post-nypost.jpeg", "link_title": "", "link_summary": "", "stats": {"comments": 123, "retweets": 234, "likes": 345}});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a3458981d24adc0a9fbb7c") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.tweets.find().pretty()
+[
+  {
+    _id: ObjectId("61a3455a81d24adc0a9fbb7b"),
+    user_icon: '../../../media/user-icon-elonmusk.jpeg',
+    userName: 'Elon Musk',
+    handle: '@elonmusk',
+    time: '23h',
+    verified: true,
+    tweet: 'Amazing show about <a href="#">@Inspiration4X</a> mission!',
+    link_image: '../../../media/home-post-elon.jpeg',
+    link_title: 'Countdown: Inspiration4 Mission to Space | Netflix Official Site',
+    link_summary: 'From training to launch to landing, this all-access docuseries rides along with the Inspiration4 crew on the first all-civilian orbital space...',
+    stats: { comments: 123, retweets: 234, likes: 345 }
+  },
+  {
+    _id: ObjectId("61a3458981d24adc0a9fbb7c"),
+    user_icon: '../../../media/user-icon-newyorkpost.jpeg',
+    userName: 'New York Post',
+    handle: '@nypost',
+    time: '23h',
+    verified: false,
+    tweet: `Grimes seen reading Karl Marx following split with world's richest man Elon Musk <a href="#">trib.al/nx2Gfaq</a>`,
+    link_image: '../../../media/home-post-nypost.jpeg',
+    link_title: '',
+    link_summary: '',
+    stats: { comments: 123, retweets: 234, likes: 345 }
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.who.insert({   "avatarIcon": "../../../media/user-icon-java.jpeg", "userName": "Java", "handle": "Java" });
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a345c281d24adc0a9fbb7d") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.who.insert({   "avatarIcon": "../../../media/user-icon-relativitySpace.jpeg", "userName": "Relativity Space", "handle": "relativityspace" });
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a345cd81d24adc0a9fbb7e") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.who.insert({   "avatarIcon": "../../../media/user-icon-virgin.png", "userName": "Virgin Galactic", "handle": "virgingalactic" });
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a345d781d24adc0a9fbb7f") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.who.insert({   "avatarIcon": "../../../media/user-icon-nasa.png", "userName": "NASA", "handle": "NASA" });
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a345df81d24adc0a9fbb80") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.who.insert({   "avatarIcon": "../../../media/user-icon-tesla.jpeg", "userName": "Tesla", "handle": "Tesla"});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a345e581d24adc0a9fbb81") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.who.find().pretty();
+[
+  {
+    _id: ObjectId("61a345c281d24adc0a9fbb7d"),
+    avatarIcon: '../../../media/user-icon-java.jpeg',
+    userName: 'Java',
+    handle: 'Java'
+  },
+  {
+    _id: ObjectId("61a345cd81d24adc0a9fbb7e"),
+    avatarIcon: '../../../media/user-icon-relativitySpace.jpeg',
+    userName: 'Relativity Space',
+    handle: 'relativityspace'
+  },
+  {
+    _id: ObjectId("61a345d781d24adc0a9fbb7f"),
+    avatarIcon: '../../../media/user-icon-virgin.png',
+    userName: 'Virgin Galactic',
+    handle: 'virgingalactic'
+  },
+  {
+    _id: ObjectId("61a345df81d24adc0a9fbb80"),
+    avatarIcon: '../../../media/user-icon-nasa.png',
+    userName: 'NASA',
+    handle: 'NASA'
+  },
+  {
+    _id: ObjectId("61a345e581d24adc0a9fbb81"),
+    avatarIcon: '../../../media/user-icon-tesla.jpeg',
+    userName: 'Tesla',
+    handle: 'Tesla'
+  }
+]
+
+Atlas atlas-t1njii-shard-0 [primary] webdev> 
+
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.profile.insert({
+... 
+...   "firstName": "Jose",
+...   "lastName": "Annunziato",
+...   "handle": "jannunzi",
+...   "profilePicture": "../../../media/user-icon-elonmusk.jpeg",
+...   "bannerPicture": "../../../media/starship.jpeg",
+...   "bio": "Faculty, Software Engineer, AI, Space, and renewable enthusiast. Retweets and likes are not endorsements.",
+...   "website": "http://www.youtube.com/webdevtv",
+...   "location": "Boston, MA",
+...   "dateOfBirth": "7/7/1968",
+...   "dateJoined": "4/2009",
+...   "followingCount": 312,
+...   "followersCount": 180,
+...   "tweetCount": 5196
+... 
+... });
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("61a3464381d24adc0a9fbb82") }
+}
+Atlas atlas-t1njii-shard-0 [primary] webdev> db.profile.find().pretty();
+[
+  {
+    _id: ObjectId("61a3464381d24adc0a9fbb82"),
+    firstName: 'Jose',
+    lastName: 'Annunziato',
+    handle: 'jannunzi',
+    profilePicture: '../../../media/user-icon-elonmusk.jpeg',
+    bannerPicture: '../../../media/starship.jpeg',
+    bio: 'Faculty, Software Engineer, AI, Space, and renewable enthusiast. Retweets and likes are not endorsements.',
+    website: 'http://www.youtube.com/webdevtv',
+    location: 'Boston, MA',
+    dateOfBirth: '7/7/1968',
+    dateJoined: '4/2009',
+    followingCount: 312,
+    followersCount: 180,
+    tweetCount: 5196
+  }
+]
+Atlas atlas-t1njii-shard-0 [primary] webdev> show dbs
+myFirstDatabase    41 kB
+webdev            229 kB
+admin             348 kB
+local            3.75 GB
+Atlas atlas-t1njii-shard-0 [primary] webdev> show collections
+movies
+profile
+tweets
+who
+Atlas atlas-t1njii-shard-0 [primary] webdev> 

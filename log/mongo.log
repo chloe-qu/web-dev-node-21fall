@@ -1,0 +1,468 @@
+Last login: Wed Nov 24 18:47:36 on ttys003
+(base) candy@Mjins-MacBook-Pro ~ % mongo
+MongoDB shell version v5.0.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Error: couldn't connect to server 127.0.0.1:27017, connection attempt failed: SocketException: Error connecting to 127.0.0.1:27017 :: caused by :: Connection refused :
+connect@src/mongo/shell/mongo.js:372:17
+@(connect):2:6
+exception: connect failed
+exiting with code 1
+(base) candy@Mjins-MacBook-Pro ~ % mongo
+MongoDB shell version v5.0.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("a1482560-88fb-48cc-b082-5871a46305a7") }
+MongoDB server version: 5.0.3
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+We recommend you begin using "mongosh".
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+	https://docs.mongodb.com/
+Questions? Try the MongoDB Developer Community Forums
+	https://community.mongodb.com
+---
+The server generated these startup warnings when booting: 
+        2021-11-24T18:51:14.090-08:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2021-11-24T18:51:14.090-08:00: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+        2021-11-24T18:51:14.090-08:00: Soft rlimits for open file descriptors too low
+        2021-11-24T18:51:14.090-08:00:         currentValue: 2560
+        2021-11-24T18:51:14.090-08:00:         recommendedMinimum: 64000
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> ^C
+bye
+(base) candy@Mjins-MacBook-Pro ~ % cd Desktop/webdev/ 
+(base) candy@Mjins-MacBook-Pro webdev % mongo
+MongoDB shell version v5.0.3
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("82d8019d-1954-44ce-92a3-6bd1d9a073e8") }
+MongoDB server version: 5.0.3
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+We recommend you begin using "mongosh".
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting: 
+        2021-11-24T18:51:14.090-08:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2021-11-24T18:51:14.090-08:00: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+        2021-11-24T18:51:14.090-08:00: Soft rlimits for open file descriptors too low
+        2021-11-24T18:51:14.090-08:00:         currentValue: 2560
+        2021-11-24T18:51:14.090-08:00:         recommendedMinimum: 64000
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use webdev
+switched to db webdev
+> db.movies.insert({title: 'Aliens', rating: 4.5})
+WriteResult({ "nInserted" : 1 })
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+webdev  0.000GB
+> db.movies.insert({title: 'Terminator', rating: 4.8})
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({title: 'Avatar', rating: 4.7})
+WriteResult({ "nInserted" : 1 })
+>  db.movies.insert({title: 'Dune', rating: 4.9})
+WriteResult({ "nInserted" : 1 })
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+webdev  0.000GB
+> db.movies.find();
+{ "_id" : ObjectId("619f2807c154e5fd6d3cdd7d"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("619f283dc154e5fd6d3cdd7e"), "title" : "Terminator", "rating" : 4.8 }
+{ "_id" : ObjectId("619f2866c154e5fd6d3cdd7f"), "title" : "Avatar", "rating" : 4.7 }
+{ "_id" : ObjectId("619f287ac154e5fd6d3cdd80"), "title" : "Dune", "rating" : 4.9 }
+> db.movies.find({ "_id" : ObjectId("619f2807c154e5fd6d3cdd7d")});
+{ "_id" : ObjectId("619f2807c154e5fd6d3cdd7d"), "title" : "Aliens", "rating" : 4.5 }
+> db.movies.find({title: 'Aliens'});
+{ "_id" : ObjectId("619f2807c154e5fd6d3cdd7d"), "title" : "Aliens", "rating" : 4.5 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("619f2807c154e5fd6d3cdd7d"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619f283dc154e5fd6d3cdd7e"),
+	"title" : "Terminator",
+	"rating" : 4.8
+}
+{
+	"_id" : ObjectId("619f2866c154e5fd6d3cdd7f"),
+	"title" : "Avatar",
+	"rating" : 4.7
+}
+{
+	"_id" : ObjectId("619f287ac154e5fd6d3cdd80"),
+	"title" : "Dune",
+	"rating" : 4.9
+}
+> db.movies.updateOne({title: 'Avatar'}, {rating: 4.9})
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateOne@src/mongo/shell/crud_api.js:565:19
+@(shell):1:1
+> Ddb.movies.updateOne({title: 'Avatar'}, {rating: 4.9})
+uncaught exception: ReferenceError: Ddb is not defined :
+@(shell):1:1
+> db.movies.updateOne({title: 'Avatar'}, {rating: 4.9});
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateOne@src/mongo/shell/crud_api.js:565:19
+@(shell):1:1
+> db.movies.updateOne({title: 'Avatar'}, {rating: 4.9})
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateOne@src/mongo/shell/crud_api.js:565:19
+@(shell):1:1
+> db.movies.updateOne({title: 'Avatar'}: {rating: 4.9})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:37
+> db.movies.updateOne({title: 'Avatar'}, {rating: 4.9})
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateOne@src/mongo/shell/crud_api.js:565:19
+@(shell):1:1
+> db.movies.updateOne({_id : ObjectId("619f2866c154e5fd6d3cdd7f")}, {rating: 4.5});
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateOne@src/mongo/shell/crud_api.js:565:19
+@(shell):1:1
+> db.movies.updateOne({title: 'Avatar'}, {rating: 4.9})；
+uncaught exception: SyntaxError: illegal character :
+@(shell):1:53
+> db.movies.updateOne({title: 'Avatar'}, {rating: 4.9});
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateOne@src/mongo/shell/crud_api.js:565:19
+@(shell):1:1
+> db.movies.updateOne({title: 'Avatar'}, {$rating: 4.9})
+WriteError({
+	"index" : 0,
+	"code" : 9,
+	"errmsg" : "Unknown modifier: $rating. Expected a valid update modifier or pipeline-style update specified as an array",
+	"op" : {
+		"q" : {
+			"title" : "Avatar"
+		},
+		"u" : {
+			"$rating" : 4.9
+		},
+		"multi" : false,
+		"upsert" : false
+	}
+}) :
+WriteError({
+	"index" : 0,
+	"code" : 9,
+	"errmsg" : "Unknown modifier: $rating. Expected a valid update modifier or pipeline-style update specified as an array",
+	"op" : {
+		"q" : {
+			"title" : "Avatar"
+		},
+		"u" : {
+			"$rating" : 4.9
+		},
+		"multi" : false,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:465:48
+mergeBatchResults@src/mongo/shell/bulk_api.js:871:49
+executeBatch@src/mongo/shell/bulk_api.js:940:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1182:21
+DBCollection.prototype.updateOne@src/mongo/shell/crud_api.js:600:17
+@(shell):1:1
+> db.movies.updateOne({title: 'Avatar'}, {$set:{rating: 4.9}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("619f2807c154e5fd6d3cdd7d"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619f283dc154e5fd6d3cdd7e"),
+	"title" : "Terminator",
+	"rating" : 4.8
+}
+{
+	"_id" : ObjectId("619f2866c154e5fd6d3cdd7f"),
+	"title" : "Avatar",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("619f287ac154e5fd6d3cdd80"),
+	"title" : "Dune",
+	"rating" : 4.9
+}
+> db.movies.updateOne({_id: ObjectId("618708ce2f9dcdbdb306a5d7")}, {$set:{rating: 4.5}})
+{ "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("619f2807c154e5fd6d3cdd7d"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619f283dc154e5fd6d3cdd7e"),
+	"title" : "Terminator",
+	"rating" : 4.8
+}
+{
+	"_id" : ObjectId("619f2866c154e5fd6d3cdd7f"),
+	"title" : "Avatar",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("619f287ac154e5fd6d3cdd80"),
+	"title" : "Dune",
+	"rating" : 4.9
+}
+> db.movies.updateOne({_id : ObjectId("619f2807c154e5fd6d3cdd7d")}, {$set:{rating: 4.6}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("619f2807c154e5fd6d3cdd7d"),
+	"title" : "Aliens",
+	"rating" : 4.6
+}
+{
+	"_id" : ObjectId("619f283dc154e5fd6d3cdd7e"),
+	"title" : "Terminator",
+	"rating" : 4.8
+}
+{
+	"_id" : ObjectId("619f2866c154e5fd6d3cdd7f"),
+	"title" : "Avatar",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("619f287ac154e5fd6d3cdd80"),
+	"title" : "Dune",
+	"rating" : 4.9
+}
+> db.movies.updateOne({_id : ObjectId("619f2807c154e5fd6d3cdd7d")}, {$set:{rating: 4.5}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("619f2807c154e5fd6d3cdd7d"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619f283dc154e5fd6d3cdd7e"),
+	"title" : "Terminator",
+	"rating" : 4.8
+} db.tweets.insert({ user_icon": "../../../media/user-icon-elonmusk.jpeg", "userName": "Elon Musk", "handle": "@elonmusk", "time": "23h","verified": true, "tweet": "Amazing show about <a href=\"#\">@Inspiration4X</a> mission!", "link_image": "../../../media/home-post-elon.jpeg", "link_title": "Countdown: Inspiration4 Mission to Space | Netflix Official Site", "link_summary": "From training to launch to landing, this all-access docuseries rides along with the Inspiration4 crew on the first all-civilian orbital space...", "stats": {"comments": 123, "retweets": 234, "likes": 345}}
+... 
+... 
+> 
+> 
+> 
+> 
+> 
+> 
+> db.tweets.insert({ user_icon": "../../../media/user-icon-elonmusk.jpeg", "userName": "Elon Musk", "handle": "@elonmusk", "time": "23h","verified": true, "tweet": "Amazing show about <a href=\"#\">@Inspiration4X</a> mission!", "link_image": "../../../media/home-post-elon.jpeg", "link_title": "Countdown: Inspiration4 Mission to Space | Netflix Official Site", "link_summary": "From training to launch to landing, this all-access docuseries rides along with the Inspiration4 crew on the first all-civilian orbital space...", "stats": {"comments": 123, "retweets": 234, "likes": 345}});
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:28
+> db.tweets.insert({ "user_icon": "../../../media/user-icon-elonmusk.jpeg", "userName": "Elon Musk", "handle": "@elonmusk", "time": "23h","verified": true, "tweet": "Amazing show about <a href=\"#\">@Inspiration4X</a> mission!", "link_image": "../../../media/home-post-elon.jpeg", "link_title": "Countdown: Inspiration4 Mission to Space | Netflix Official Site", "link_summary": "From training to launch to landing, this all-access docuseries rides along with the Inspiration4 crew on the first all-civilian orbital space...", "stats": {"comments": 123, "retweets": 234, "likes": 345}});
+WriteResult({ "nInserted" : 1 })
+> db.tweets.find().pretty();
+{
+	"_id" : ObjectId("61a07768c154e5fd6d3cdd81"),
+	"user_icon" : "../../../media/user-icon-elonmusk.jpeg",
+	"userName" : "Elon Musk",
+	"handle" : "@elonmusk",
+	"time" : "23h",
+	"verified" : true,
+	"tweet" : "Amazing show about <a href=\"#\">@Inspiration4X</a> mission!",
+	"link_image" : "../../../media/home-post-elon.jpeg",
+	"link_title" : "Countdown: Inspiration4 Mission to Space | Netflix Official Site",
+	"link_summary" : "From training to launch to landing, this all-access docuseries rides along with the Inspiration4 crew on the first all-civilian orbital space...",
+	"stats" : {
+		"comments" : 123,
+		"retweets" : 234,
+		"likes" : 345
+	}
+}
+> db.tweets.insert({ "user_icon": "../../../media/user-icon-newyorkpost.jpeg", "userName": "New York Post", "handle": "@nypost", "time": "23h",)
+...     "verified": false, "tweet": "Grimes seen reading Karl Marx following split with world's richest man Elon Musk <a href=\"#\">trib.al/nx2Gfaq</a>",
+...     "link_image": "../../../media/home-post-nypost.jpeg", "link_title": "",
+...     "link_summary": "",
+...     "stats": {
+...       "comments": 123,
+...       "retweets": 234,
+...       "likes": 345}});
+uncaught exception: SyntaxError: expected property name, got ')' :
+@(shell):1:141
+> db.tweets.insert({ "user_icon": "../../../media/user-icon-newyorkpost.jpeg", "userName": "New York Post", "handle": "@nypost", "time": "23h", "verified": false, "tweet": "Grimes seen reading Karl Marx following split with world's richest man Elon Musk <a href=\"#\">trib.al/nx2Gfaq</a>", "link_image": "../../../media/home-post-nypost.jpeg", "link_title": "", "link_summary": "", "stats": {"comments": 123, "retweets": 234, "likes": 345}});
+WriteResult({ "nInserted" : 1 })
+> db.tweets.find().pretty();
+{
+	"_id" : ObjectId("61a07768c154e5fd6d3cdd81"),
+	"user_icon" : "../../../media/user-icon-elonmusk.jpeg",
+	"userName" : "Elon Musk",
+	"handle" : "@elonmusk",
+	"time" : "23h",
+	"verified" : true,
+	"tweet" : "Amazing show about <a href=\"#\">@Inspiration4X</a> mission!",
+	"link_image" : "../../../media/home-post-elon.jpeg",
+	"link_title" : "Countdown: Inspiration4 Mission to Space | Netflix Official Site",
+	"link_summary" : "From training to launch to landing, this all-access docuseries rides along with the Inspiration4 crew on the first all-civilian orbital space...",
+	"stats" : {
+		"comments" : 123,
+		"retweets" : 234,
+		"likes" : 345
+	}
+}
+{
+	"_id" : ObjectId("61a077eac154e5fd6d3cdd82"),
+	"user_icon" : "../../../media/user-icon-newyorkpost.jpeg",
+	"userName" : "New York Post",
+	"handle" : "@nypost",
+	"time" : "23h",
+	"verified" : false,
+	"tweet" : "Grimes seen reading Karl Marx following split with world's richest man Elon Musk <a href=\"#\">trib.al/nx2Gfaq</a>",
+	"link_image" : "../../../media/home-post-nypost.jpeg",
+	"link_title" : "",
+	"link_summary" : "",
+	"stats" : {
+		"comments" : 123,
+		"retweets" : 234,
+		"likes" : 345
+	}
+}
+> 
+> 
+> db.who.insert({   "avatarIcon": "../../../media/user-icon-java.jpeg",)
+...         "userName": "Java", "handle": "Java" })
+uncaught exception: SyntaxError: expected property name, got ')' :
+@(shell):1:69
+> db.who.insert({   "avatarIcon": "../../../media/user-icon-java.jpeg", "userName": "Java", "handle": "Java" });
+WriteResult({ "nInserted" : 1 })
+> db.who.insert({   "avatarIcon": "../../../media/user-icon-relativitySpace.jpeg", "userName": "Relativity Space", "handle": "relativityspace" });
+WriteResult({ "nInserted" : 1 })
+> db.who.insert({   "avatarIcon": "../../../media/user-icon-virgin.png", "userName": "Virgin Galactic", "handle": "virgingalactic" });
+WriteResult({ "nInserted" : 1 })
+> db.who.insert({   "avatarIcon": "../../../media/user-icon-nasa.png", "userName": "NASA", "handle": "NASA" });
+WriteResult({ "nInserted" : 1 })
+> db.who.insert({   "avatarIcon": "../../../media/user-icon-tesla.jpeg", "userName": "Tesla", "handle": "Tesla"});
+WriteResult({ "nInserted" : 1 })
+> db.who.find().pretty();
+{
+	"_id" : ObjectId("61a1f03ec154e5fd6d3cdd83"),
+	"avatarIcon" : "../../../media/user-icon-java.jpeg",
+	"userName" : "Java",
+	"handle" : "Java"
+}
+{
+	"_id" : ObjectId("61a1f053c154e5fd6d3cdd84"),
+	"avatarIcon" : "../../../media/user-icon-relativitySpace.jpeg",
+	"userName" : "Relativity Space",
+	"handle" : "relativityspace"
+}
+{
+	"_id" : ObjectId("61a1f06ac154e5fd6d3cdd85"),
+	"avatarIcon" : "../../../media/user-icon-virgin.png",
+	"userName" : "Virgin Galactic",
+	"handle" : "virgingalactic"
+}
+{
+	"_id" : ObjectId("61a1f078c154e5fd6d3cdd86"),
+	"avatarIcon" : "../../../media/user-icon-nasa.png",
+	"userName" : "NASA",
+	"handle" : "NASA"
+}
+{
+	"_id" : ObjectId("61a1f089c154e5fd6d3cdd87"),
+	"avatarIcon" : "../../../media/user-icon-tesla.jpeg",
+	"userName" : "Tesla",
+	"handle" : "Tesla"
+}
+> db.profile.insert({)
+... 
+...   "firstName": "Jose",
+...   "lastName": "Annunziato",
+...   "handle": "jannunzi",
+...   "profilePicture": "../../../media/user-icon-elonmusk.jpeg",
+...   "bannerPicture": "../../../media/starship.jpeg",
+...   "bio": "Faculty, Software Engineer, AI, Space, and renewable enthusiast. Retweets and likes are not endorsements.",
+...   "website": "http://www.youtube.com/webdevtv",
+...   "location": "Boston, MA",
+...   "dateOfBirth": "7/7/1968",
+...   "dateJoined": "4/2009",
+...   "followingCount": 312,
+...   "followersCount": 180,
+...   "tweetCount": 5196
+... 
+... }
+uncaught exception: SyntaxError: expected property name, got ')' :
+@(shell):1:19
+> db.profile.insert({
+... 
+...   "firstName": "Jose",
+...   "lastName": "Annunziato",
+...   "handle": "jannunzi",
+...   "profilePicture": "../../../media/user-icon-elonmusk.jpeg",
+...   "bannerPicture": "../../../media/starship.jpeg",
+...   "bio": "Faculty, Software Engineer, AI, Space, and renewable enthusiast. Retweets and likes are not endorsements.",
+...   "website": "http://www.youtube.com/webdevtv",
+...   "location": "Boston, MA",
+...   "dateOfBirth": "7/7/1968",
+...   "dateJoined": "4/2009",
+...   "followingCount": 312,
+...   "followersCount": 180,
+...   "tweetCount": 5196
+... 
+... });
+WriteResult({ "nInserted" : 1 })
+> db.profile.find().pretty()
+{
+	"_id" : ObjectId("61a1f3a6c154e5fd6d3cdd88"),
+	"firstName" : "Jose",
+	"lastName" : "Annunziato",
+	"handle" : "jannunzi",
+	"profilePicture" : "../../../media/user-icon-elonmusk.jpeg",
+	"bannerPicture" : "../../../media/starship.jpeg",
+	"bio" : "Faculty, Software Engineer, AI, Space, and renewable enthusiast. Retweets and likes are not endorsements.",
+	"website" : "http://www.youtube.com/webdevtv",
+	"location" : "Boston, MA",
+	"dateOfBirth" : "7/7/1968",
+	"dateJoined" : "4/2009",
+	"followingCount" : 312,
+	"followersCount" : 180,
+	"tweetCount" : 5196
+}
+> 

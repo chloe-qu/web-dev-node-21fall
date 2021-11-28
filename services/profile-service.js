@@ -1,13 +1,21 @@
-let myProfile = require('../data/profileData.json');
+// let myProfile = require('../data/profileData.json');
+const dao = require('../db/profile/profile-dao')
 
 module.exports = (app) => {
     const getInfo = (req, res) => {
-        res.json(myProfile);
+        dao.findProfile()
+            .then(profile => {
+                res.json(profile);
+            });
+
     }
 
     const updateInfo = (req, res) => {
-        myProfile = {...myProfile, ...req.body};
-        res.json(myProfile);
+        // myProfile = {...myProfile, ...req.body};
+        // res.json(myProfile);
+        dao.updateProfile(req.params.id, req.body).then(() => {
+            res.sendStatus(200);
+        })
     }
 
     app.get('/api/profile', getInfo);
